@@ -59,7 +59,7 @@ const Blog = ({ blog, blogs }) => {
           ))}
         </div>
         <div className={style.relatedBlogs}>
-          <h3>Related Blogs1</h3>
+          <h3>Related Blogs</h3>
           <Swiper slidesPerView={"auto"} className={style.relatedBlogContainer}>
             {blogs
               .filter((blogs) => {
