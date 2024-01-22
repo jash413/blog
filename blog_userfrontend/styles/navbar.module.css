@@ -1,0 +1,235 @@
+.nav {
+  width: 100%;
+  height: 370px;
+  padding: 40px;
+}
+
+.headerTitle {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 35px;
+  align-items: center;
+}
+
+.trakkyLogo {
+  height: 100%;
+  width: auto;
+  cursor: pointer;
+}
+
+.navButton {
+  padding: 4px 15px;
+  border: 1px solid white;
+  border-radius: 50px;
+  font-size: 14px;
+  line-height: 16px;
+  line-height: 22px;
+  color: white;
+  background: transparent;
+  cursor: pointer;
+}
+
+.searchSection {
+  padding-inline: 40px;
+}
+
+.navHeroText {
+  color: white;
+  width: 100%;
+  font-size: 3rem;
+  padding-block: 80px 40px;
+  font-family: Raleway;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+
+}
+
+.searchBarDiv {
+  width: 100%;
+  height: 60px;
+  width: 650px;
+  background-color: white;
+  border-radius: 40px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.searchBar {
+  flex: 0 1 80%;
+  border: none;
+  outline: none;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  padding: 0 5px;
+}
+
+.searchBar input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-family: Raleway;
+}
+
+.searchBar img {
+  height: 20px;
+  width: auto;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.searchCity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 15px 0 5px;
+  border-left: 1px solid #E0E0E0;
+}
+
+.searchCity img {
+  height: 20px;
+  width: auto;
+  cursor: pointer;
+}
+
+.searchCity img:last-child {
+  height: 15px;
+  width: auto;
+  cursor: pointer;
+}
+
+.searchCity .cityName {
+  font-size: 0.8rem;
+  font-family: Raleway;
+  color: #828282;
+  cursor: pointer;
+  width: 80px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
+
+@media screen and (max-width: 1024px) {
+
+  .nav {
+    padding: 30px;
+    height: 320px;
+  }
+
+  .navHeroText {
+    padding-block: 70px 35px;
+  }
+
+  .searchSection {
+    padding-inline: 20px;
+  }
+
+  .navHeroText {
+    font-size: 2.6rem;
+  }
+
+  .searchBarDiv {
+    height: 50px;
+    width: 540px;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .nav {
+    padding: 30px 20px;
+    height: 290px;
+  }
+
+  .headerTitle {
+    height: 30px;
+  }
+
+  .navHeroText {
+    padding-block: 60px 35px;
+  }
+
+  .searchSection {
+    padding-inline: 20px;
+  }
+
+  .navHeroText {
+    font-size: 2.2rem;
+  }
+
+  .searchBarDiv {
+    height: 45px;
+    width: 440px;
+  }
+
+}
+
+@media screen and (max-width: 540px) {
+
+  .nav {
+    padding: 30px 15px;
+    height: 320px;
+  }
+
+  .headerTitle {
+    height: 25px;
+  }
+
+  .navHeroText {
+    padding-block: 80px 25px;
+  }
+
+  .searchSection {
+    padding-inline: 10px;
+  }
+
+  .navHeroText {
+    font-size: 1.8rem;
+  }
+
+  .searchBarDiv {
+    height: 40px;
+    width: 100%;
+  }
+
+  .searchBarDiv {
+    width: 100%;
+    background-color: white;
+    border-radius: 40px;
+    gap: 5px;
+  }
+
+  .searchBar input {
+    font-size: 0.8rem;
+  }
+
+  .searchBar img {
+    height: 18px;
+    padding: 0 8px;
+  }
+
+  .searchCity {
+    padding: 0 12px 0 5px;
+  }
+
+  .searchCity img {
+    height: 18px;
+  }
+
+  .searchCity img:last-child {
+    height: 12px;
+  }
+
+  .searchCity .cityName {
+    font-size: 0.7rem;
+    width: 65px;
+
+  }
+
+}
