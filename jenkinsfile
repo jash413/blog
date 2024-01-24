@@ -4,9 +4,9 @@ pipeline {
     environment {
         EC2_SERVER = 'ubuntu@65.2.5.173'
         DESTINATION_PATH = '/var/www/html/'
-        CLOUDINARY_CLOUD_NAME = credentials('CLOUDINARY_CLOUD_NAME_CREDENTIAL_ID')
-        CLOUDINARY_API_KEY = credentials('CLOUDINARY_API_KEY_FILE_CREDENTIAL_ID')
-        CLOUDINARY_API_SECRET = credentials('CLOUDINARY_API_SECRET_FILE_CREDENTIAL_ID')
+        CLOUDINARY_CLOUD_NAME = 'dvjozqf7u'
+        CLOUDINARY_API_KEY = '632411389818599'
+        CLOUDINARY_API_SECRET = 'LY8t3Bzv7osVZoYppq3RYMlrB2g'
     }
 
     options {
