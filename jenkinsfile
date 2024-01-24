@@ -6,12 +6,6 @@ pipeline {
         DESTINATION_PATH = '/var/www/html/'
     }
 
-    options {
-        timeout(time: 1, unit: 'HOURS') // Set a timeout for the entire pipeline
-        timestamps() // Add timestamps to console output
-        buildDiscarder(logRotator(artifactDaysToKeepStr: '15', artifactNumToKeepStr: '5')) // Discard old builds
-    }
-
     stages {
         stage('Initialize') {
             steps {
