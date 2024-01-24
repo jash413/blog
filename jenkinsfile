@@ -1,0 +1,83 @@
+pipeline {
+    agent any
+
+    environment {
+        EC2_SERVER = 'ubuntu@65.2.5.173'
+        DESTINATION_PATH = '/var/www/html/'
+        CLOUDINARY_CLOUD_NAME = credentials('CLOUDINARY_CLOUD_NAME_CREDENTIAL_ID')
+        CLOUDINARY_API_KEY = credentials('CLOUDINARY_API_KEY_FILE_CREDENTIAL_ID')
+        CLOUDINARY_API_SECRET = credentials('CLOUDINARY_API_SECRET_FILE_CREDENTIAL_ID')
+    }
+
+    options {
+        timeout(time: 1, unit: 'HOURS') // Set a timeout for the entire pipeline
+        timestamps() // Add timestamps to console output
+        buildDiscarder(logRotator(artifactDaysToKeepStr: '15', artifactNumToKeepStr: '5')) // Discard old builds
+    }
+
+    stages {
+        stage('Initialize') {
+            steps {
+                echo 'Initializing pipeline...'
+            }
+        }
+
+        stage('Clone Repository') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Create .env.local File') {
+            steps {
+                script {
+                    echo 'Creating .env.local file...'
+                    sh """
+                        echo "NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}" > ${EC2_SERVER}:${DESTINATION_PATH}/.env.local
+                        echo "NEXT_PUBLIC_CLOUDINARY_API_KEY=$(cat ${CLOUDINARY_API_KEY})" >> ${EC2_SERVER}:${DESTINATION_PATH}/.env.local
+                        echo "NEXT_PUBLIC_CLOUDINARY_API_SECRET=$(cat ${CLOUDINARY_API_SECRET})" >> ${EC2_SERVER}:${DESTINATION_PATH}/.env.local
+                    """
+                }
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    echo 'Installing Node.js dependencies...'
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    echo 'Building Next.js application...'
+                    sh 'npm run build'
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    echo 'Copying build files to Apache web directory...'
+                    sh "scp -r ./out/* ${EC2_SERVER}:${DESTINATION_PATH}"
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deployment successful!'
+        }
+        failure {
+            echo 'Deployment failed!'
+        }
+        always {
+            echo 'Deployment completed!'
+        }
+    }
+}
