@@ -46,6 +46,8 @@ pipeline {
           stage('Deploy') {
             steps {
                 script {
+                    echo 'Checking and adjusting permissions...'
+                    sh "sudo chown -R jenkins: ${DESTINATION_PATH}"
                     echo 'Copying build files to Apache web directory...'
                     sh "cp -r ./out/* ${DESTINATION_PATH}"
                 }
