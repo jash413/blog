@@ -4,9 +4,6 @@ pipeline {
     environment {
         EC2_SERVER = 'ubuntu@65.2.5.173'
         DESTINATION_PATH = '/var/www/html/'
-        CLOUDINARY_CLOUD_NAME = 'dvjozqf7u'
-        CLOUDINARY_API_KEY = '632411389818599'
-        CLOUDINARY_API_SECRET = 'LY8t3Bzv7osVZoYppq3RYMlrB2g'
     }
 
     options {
@@ -28,19 +25,6 @@ pipeline {
             }
         }
 
-        // stage('Create .env.local File') {
-        //     steps {
-        //         script {
-        //             echo 'Creating .env.local file...'
-        //             sh """
-        //                 echo "NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}" > ${EC2_SERVER}:${DESTINATION_PATH}.env.local
-        //                 echo "NEXT_PUBLIC_CLOUDINARY_API_KEY=$(cat ${CLOUDINARY_API_KEY})" >> ${EC2_SERVER}:${DESTINATION_PATH}.env.local
-        //                 echo "NEXT_PUBLIC_CLOUDINARY_API_SECRET=$(cat ${CLOUDINARY_API_SECRET})" >> ${EC2_SERVER}:${DESTINATION_PATH}.env.local
-        //             """
-        //         }
-        //     }
-        // }
-
         stage('Install Dependencies') {
             steps {
                 script {
@@ -49,15 +33,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Upgrade Next.js') {
-    steps {
-        script {
-            echo 'Upgrading Next.js...'
-            sh 'npm install next@latest'
-        }
-    }
-}
 
         stage('Build') {
             steps {
