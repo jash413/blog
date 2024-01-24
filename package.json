@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export -o build/",
+    "build": "NODE_OPTIONS='--max_old_space_size=4096' next build && next export -o build/",
     "start": "next start",
     "lint": "next lint"
   }
