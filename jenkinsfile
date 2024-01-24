@@ -32,14 +32,6 @@ pipeline {
             }
         }
 
-        // stage('Deploy') {
-        //     steps {
-        //         script {
-        //             echo 'Copying build files to Apache web directory...'
-        //             sh "scp -r ./out/* ${EC2_SERVER}:${DESTINATION_PATH}"
-        //         }
-        //     }
-        // }
     }
 
     post {
