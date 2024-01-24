@@ -28,18 +28,18 @@ pipeline {
             }
         }
 
-        stage('Create .env.local File') {
-            steps {
-                script {
-                    echo 'Creating .env.local file...'
-                    sh """
-                        echo "NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}" > ${EC2_SERVER}:${DESTINATION_PATH}.env.local
-                        echo "NEXT_PUBLIC_CLOUDINARY_API_KEY=$(cat ${CLOUDINARY_API_KEY})" >> ${EC2_SERVER}:${DESTINATION_PATH}.env.local
-                        echo "NEXT_PUBLIC_CLOUDINARY_API_SECRET=$(cat ${CLOUDINARY_API_SECRET})" >> ${EC2_SERVER}:${DESTINATION_PATH}.env.local
-                    """
-                }
-            }
-        }
+        // stage('Create .env.local File') {
+        //     steps {
+        //         script {
+        //             echo 'Creating .env.local file...'
+        //             sh """
+        //                 echo "NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}" > ${EC2_SERVER}:${DESTINATION_PATH}.env.local
+        //                 echo "NEXT_PUBLIC_CLOUDINARY_API_KEY=$(cat ${CLOUDINARY_API_KEY})" >> ${EC2_SERVER}:${DESTINATION_PATH}.env.local
+        //                 echo "NEXT_PUBLIC_CLOUDINARY_API_SECRET=$(cat ${CLOUDINARY_API_SECRET})" >> ${EC2_SERVER}:${DESTINATION_PATH}.env.local
+        //             """
+        //         }
+        //     }
+        // }
 
         stage('Install Dependencies') {
             steps {
@@ -49,6 +49,15 @@ pipeline {
                 }
             }
         }
+
+        stage('Upgrade Next.js') {
+    steps {
+        script {
+            echo 'Upgrading Next.js...'
+            sh 'npm install next@latest'
+        }
+    }
+}
 
         stage('Build') {
             steps {
