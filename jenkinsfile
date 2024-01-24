@@ -4,6 +4,7 @@ pipeline {
         environment {
         EC2_SERVER = 'ubuntu@13.233.99.70'
         DESTINATION_PATH = '/var/www/html/'
+          MY_CREDENTIAL_ID = 'trakky_blog'
     }
 
 
@@ -46,8 +47,11 @@ pipeline {
           stage('Deploy') {
             steps {
                 script {
+                    // Use the withCredentials block to bind the secret file to a variable
+                withCredentials([file(credentialsId: MY_CREDENTIAL_ID, variable: 'SSH_KEY')]) {
                     echo 'Copying build files to Apache web directory...'
                     sh "scp -i ${JENKINS_HOME}/workspace/Trakky_Blog/trakky_blog.pem -r ./out/* ${EC2_SERVER}:${DESTINATION_PATH}"
+                }
                 }
             }
           }
