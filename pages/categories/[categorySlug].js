@@ -6,7 +6,7 @@ import CTA from "../../components/homepage/CTA";
 import Footer from "../../components/Footer";
 import BlogCard from "../../components/blogpage/BlogCard";
 import Head from "next/head";
-import { getSeoData, getBlogCategories, getBlogByCategory } from "../../api";
+import { getSeoData, getBlogCategories, getBlogs } from "../../api";
 import { useRouter } from "next/router";
 
 const Category = (props) => {
@@ -58,11 +58,11 @@ export async function getStaticPaths() {
   return { paths, fallback: false };
 }
 
-export async function getStaticProps({params}) {
+export async function getStaticProps() {
   const page = "categoryList";
   const seoData = await getSeoData(page);
   const blogCategories = await getBlogCategories();
-  const blogs = await getBlogByCategory(params.categorySlug);
+  const blogs = await getBlogs();
   return {
     props: {
       ...seoData,
