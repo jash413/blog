@@ -47,7 +47,6 @@ pipeline {
             steps {
                 script {
                     echo 'Checking and adjusting permissions...'
-                    sh "chown -R jenkins: ${DESTINATION_PATH}"
                     echo 'Copying build files to Apache web directory...'
                     sh "cp -r ./out/* ${DESTINATION_PATH}"
                 }
