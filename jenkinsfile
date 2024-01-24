@@ -47,7 +47,7 @@ pipeline {
             steps {
                 script {
                     echo 'Copying build files to Apache web directory...'
-                    sh "scp -r ./out/* ${DESTINATION_PATH}"
+                    sh "scp -r ./out/* ${EC2_SERVER}:${DESTINATION_PATH}"
                 }
             }
           }
