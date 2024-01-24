@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         EC2_SERVER = 'ubuntu@65.2.5.173'
-        DESTINATION_PATH = '/var/www/html/'
+        // DESTINATION_PATH = '/var/www/html/'
     }
 
     stages {
@@ -37,14 +37,14 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            steps {
-                script {
-                    echo 'Copying build files to Apache web directory...'
-                    sh "scp -r ./out/* ${EC2_SERVER}:${DESTINATION_PATH}"
-                }
-            }
-        }
+        // stage('Deploy') {
+        //     steps {
+        //         script {
+        //             echo 'Copying build files to Apache web directory...'
+        //             sh "scp -r ./out/* ${EC2_SERVER}:${DESTINATION_PATH}"
+        //         }
+        //     }
+        // }
     }
 
     post {
