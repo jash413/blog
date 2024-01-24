@@ -21,7 +21,9 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export -o build/",
+    "scripts": {
+      "build": "node --max-old-space-size=4096 ./node_modules/.bin/next build"
+    },
     "start": "next start",
     "lint": "next lint"
   }
